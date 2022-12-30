@@ -8,6 +8,7 @@ function drawCanvas(canvas) {
     let ctx = canvas.getContext("2d");
     drawSun(ctx, 0, 0);
     drawClouds(ctx);
+    drawTree(ctx, 100, 400);
 }
 
 function drawSun(ctx, begX, begY) {
@@ -41,4 +42,22 @@ function drawCloud(ctx, begX, begY) {
     drawCircle(ctx, begX - bigCircleRadius, begY + offsetCircleSmall, smallCircleRadius);
     drawCircle(ctx, begX + bigCircleRadius, begY + offsetCircleSmall, smallCircleRadius);
     ctx.fillRect(begX-65, begY + 8, 120, 60);
+}
+
+function drawTree(ctx, begX, begY) {
+    ctx.fillStyle = "#42f548";
+    const sizeStem = 100;
+    drawLine(ctx, begX, begY, begX, begY + sizeStem);
+    drawCircle(ctx, begX, begY, 35);
+    drawCircle(ctx, begX + 35, begY - 20, 35);
+    drawCircle(ctx, begX - 10, begY - 50, 30);
+    drawCircle(ctx, begX, begY + 30, 35);
+    drawCircle(ctx, begX - 40, begY, 35);
+}
+
+function drawLine(ctx, begX, begY, endX, endY) {
+    ctx.beginPath();
+    ctx.moveTo(begX, begY);
+    ctx.lineTo(endX, endY);
+    ctx.stroke();
 }
