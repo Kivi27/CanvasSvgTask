@@ -17,12 +17,6 @@ function drawSun(ctx, begX, begY) {
     drawCircle(ctx, begX, begY, radiusSun);
 }
 
-function drawCircle(ctx, begX, begY, radius) {
-    ctx.beginPath();
-    ctx.arc(begX, begY, radius, 0, 2 * Math.PI);
-    ctx.fill();
-}
-
 function drawClouds(ctx) {
     const linesHeight = [120, 180];
     const countCloud = 6;
@@ -53,6 +47,12 @@ function drawTree(ctx, begX, begY) {
     drawCircle(ctx, begX - 10, begY - 50, 30);
     drawCircle(ctx, begX, begY + 30, 35);
     drawCircle(ctx, begX - 40, begY, 35);
+}
+
+function drawCircle(ctx, begX, begY, radius) {
+    ctx.beginPath();
+    ctx.arc(begX, begY, radius, 0, 2 * Math.PI);
+    ctx.fill();
 }
 
 function drawLine(ctx, begX, begY, endX, endY) {
