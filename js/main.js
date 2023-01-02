@@ -1,14 +1,13 @@
 let canvas  = document.querySelector(".canvas-picture__canvas");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
+canvas.width = window.screen.width;
+canvas.height = 700;
 
 drawCanvas(canvas);
 function drawCanvas(canvas) {
     let ctx = canvas.getContext("2d");
     drawSun(ctx, 0, 0);
     drawClouds(ctx);
-    drawTree(ctx, 100, 400);
+    drawTrees(ctx);
 }
 
 function drawSun(ctx, begX, begY) {
@@ -18,10 +17,11 @@ function drawSun(ctx, begX, begY) {
 }
 
 function drawClouds(ctx) {
-    const linesHeight = [120, 180];
+    const heightLines = [120, 180];
     const countCloud = 6;
+
     for (let i = 0; i < countCloud; i++) {
-        const heightCloud = i % 2 === 0 ? linesHeight[0] : linesHeight[1];
+        const heightCloud = i % 2 === 0 ? heightLines[0] : heightLines[1];
         drawCloud(ctx, canvas.width - ((i + 1) * 220), heightCloud);
     }
 }
@@ -36,6 +36,16 @@ function drawCloud(ctx, begX, begY) {
     drawCircle(ctx, begX - bigCircleRadius, begY + offsetCircleSmall, smallCircleRadius);
     drawCircle(ctx, begX + bigCircleRadius, begY + offsetCircleSmall, smallCircleRadius);
     ctx.fillRect(begX-65, begY + 8, 120, 60);
+}
+
+function drawTrees(ctx) {
+    const heightTree = [400, 600];
+    const countTree = 6;
+
+    for (let i  = 0; i < countTree; i++) {
+        const heightCloud = i % 2 === 0 ? heightTree[0] : heightTree[1];
+        drawTree(ctx, canvas.width - ((i + 1) * 220), heightCloud);
+    }
 }
 
 function drawTree(ctx, begX, begY) {
