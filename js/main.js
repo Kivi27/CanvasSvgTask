@@ -15,13 +15,15 @@ function drawPicture(canvas) {
     const heightLines = [120, 180];
     const countCloud = 6;
     const heightTree = [400, 600];
-    const countTree = 6;
+    const countTree = 5;
     const betweenDistanceDrawObject = 220;
+    const birdX = 150;
+    const birdY = 450;
 
     drawSun(ctx, 0, 0);
     drawClouds(ctx, heightLines, countCloud, betweenDistanceDrawObject);
     drawTrees(ctx, heightTree, countTree, betweenDistanceDrawObject);
-    drawBird(ctx, 700, 200);
+    drawBird(ctx, birdX, birdY);
 }
 
 function drawSun(ctx, begX, begY) {
@@ -85,39 +87,49 @@ function drawBird(ctx, begX, begY) {
     const radiusHead = 50;
     const radiusEye = 12;
     const widthBeak = 120;
-    const AngleBeak = 20;
-
-    ctx.fillStyle = greenColor;
-    drawCircle(ctx, begX, begY, radiusHead);
-    ctx.fillStyle = blueColor;
-    drawCircle(ctx, begX, begY - 10, radiusEye);
-    drawLine(ctx, begX - radiusHead, begY, begX - widthBeak, begY + AngleBeak);
-    drawLine(ctx, begX - radiusHead + 5, begY + AngleBeak, begX - widthBeak, begY + AngleBeak);
+    const angleBeak = 20;
     const centerBodyX = begX + radiusHead + 50;
     const centerBodyY = begY + radiusHead * 2;
     const radiusBodyX = 100;
     const radiusBodyY = 70;
+
+    drawBirdHead(ctx, begX, begY, widthBeak, angleBeak, radiusHead, radiusEye);
     drawEllipse(ctx, centerBodyX, centerBodyY, radiusBodyX, radiusBodyY, 0.3);
     drawBirdTail(ctx, centerBodyX + 20, radiusBodyX, centerBodyY - 25, radiusBodyY);
     drawBirdPaw(ctx, begX, begY - 10, radiusBodyX, radiusBodyY);
     drawBirdPaw(ctx, begX - 50, begY - 25, radiusBodyX, radiusBodyY);
 }
 
+function drawBirdHead(ctx, begX, begY, widthBeak, angleBeak, radiusHead, radiusEye) {
+    ctx.fillStyle = greenColor;
+    drawCircle(ctx, begX, begY, radiusHead);
+    ctx.fillStyle = blueColor;
+    drawCircle(ctx, begX, begY - 10, radiusEye);
+    drawLine(ctx, begX - radiusHead, begY, begX - widthBeak, begY + angleBeak);
+    drawLine(ctx, begX - radiusHead + 5, begY + angleBeak, begX - widthBeak, begY + angleBeak);
+}
+
 function drawBirdTail(ctx, centerBodyX, radiusBodyX, centerBodyY, radiusBodyY) {
-    drawLine(ctx, centerBodyX + radiusBodyX - 26, centerBodyY + radiusBodyY - 20,
-        centerBodyX + radiusBodyX + 80, centerBodyY + radiusBodyY - 60);
-    drawLine(ctx, centerBodyX + radiusBodyX + 80, centerBodyY + radiusBodyY - 60,
-        centerBodyX + radiusBodyX + 10, centerBodyY + radiusBodyY);
-    drawLine(ctx, centerBodyX + radiusBodyX + 10, centerBodyY + radiusBodyY,
-        centerBodyX + radiusBodyX + 35, centerBodyY + radiusBodyY + 50);
-    drawLine(ctx, centerBodyX + radiusBodyX + 35, centerBodyY + radiusBodyY + 50, centerBodyX + radiusBodyX - 40, centerBodyY + radiusBodyY + 10);
+    const points = [
+        {coordinateX: centerBodyX + radiusBodyX - 26, coordinateY: centerBodyY + radiusBodyY - 20},
+        {coordinateX: centerBodyX + radiusBodyX + 80, coordinateY: centerBodyY + radiusBodyY - 60},
+        {coordinateX: centerBodyX + radiusBodyX + 10, coordinateY: centerBodyY + radiusBodyY},
+        {coordinateX: centerBodyX + radiusBodyX + 35, coordinateY: centerBodyY + radiusBodyY + 50},
+        {coordinateX: centerBodyX + radiusBodyX - 40, coordinateY: centerBodyY + radiusBodyY + 10},
+    ]
+    
+    drawPolyLine(ctx, points);
 }
 
 function drawBirdPaw(ctx, begX, begY, radiusBodyX, radiusBodyY) {
-    drawLine(ctx, begX + radiusBodyX, begY + radiusBodyY * 2 + 40, begX + radiusBodyX + 20, begY + radiusBodyY * 2 + 80);
-    drawLine(ctx, begX + radiusBodyX + 20, begY + radiusBodyY * 2 + 80, begX + radiusBodyX, begY + radiusBodyY * 2 + 100);
-    drawLine(ctx, begX + radiusBodyX, begY + radiusBodyY * 2 + 100, begX + radiusBodyX - 20, begY + radiusBodyY * 2 + 120);
-    drawLine(ctx, begX + radiusBodyX, begY + radiusBodyY * 2 + 100, begX + radiusBodyX + 20, begY + radiusBodyY * 2 + 120);
+    drawLine(ctx, begX + radiusBodyX, begY + radiusBodyY * 2 + 40,
+        begX + radiusBodyX + 20, begY + radiusBodyY * 2 + 80);
+    drawLine(ctx, begX + radiusBodyX + 20, begY + radiusBodyY * 2 + 80,
+        begX + radiusBodyX, begY + radiusBodyY * 2 + 100);
+    drawLine(ctx, begX + radiusBodyX, begY + radiusBodyY * 2 + 100,
+        begX + radiusBodyX - 20, begY + radiusBodyY * 2 + 120);
+    drawLine(ctx, begX + radiusBodyX, begY + radiusBodyY * 2 + 100,
+        begX + radiusBodyX + 20, begY + radiusBodyY * 2 + 120);
 }
 
 function drawCircle(ctx, begX, begY, radius) {
@@ -137,4 +149,12 @@ function drawEllipse(ctx, begX, begY, radiusX, radiusY, rotation) {
     ctx.beginPath();
     ctx.ellipse(begX, begY, radiusX, radiusY, rotation, 0, 2 * Math.PI);
     ctx.fill();
+}
+
+function drawPolyLine(ctx, points) {
+    let previousPoint = points[0];
+    for (let i = 1; i < points.length; i++) {
+        drawLine(ctx, previousPoint.coordinateX, previousPoint.coordinateY, points[i].coordinateX, points[i].coordinateY);
+        previousPoint = points[i];
+    }
 }
