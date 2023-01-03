@@ -34,9 +34,11 @@ function drawSun(ctx, begX, begY) {
 }
 
 function drawClouds(ctx, heightLines, countCloud, betweenDistance) {
+    const rightLimit = 1680;
+    console.log(canvas.width);
     for (let i = 0; i < countCloud; i++) {
         const heightCloud = i % 2 === 0 ? heightLines[0] : heightLines[1];
-        drawCloud(ctx, canvas.width - ((i + 1) * betweenDistance), heightCloud);
+        drawCloud(ctx, rightLimit - ((i + 1) * betweenDistance), heightCloud);
     }
 }
 
@@ -58,9 +60,10 @@ function drawCloud(ctx, begX, begY) {
 }
 
 function drawTrees(ctx, heightTree, countTree, betweenDistance) {
+    const rightLimit = 1680;
     for (let i  = 0; i < countTree; i++) {
         const heightCloud = i % 2 === 0 ? heightTree[0] : heightTree[1];
-        drawTree(ctx, canvas.width - ((i + 1) * betweenDistance), heightCloud);
+        drawTree(ctx, rightLimit - ((i + 1) * betweenDistance), heightCloud);
     }
 }
 
@@ -160,3 +163,9 @@ function drawPolyLine(ctx, points) {
         previousPoint = points[i];
     }
 }
+
+window.addEventListener("resize", function() {
+    canvas.width = window.innerWidth;
+    canvas.height = 700;
+    drawPicture(canvas);
+});
