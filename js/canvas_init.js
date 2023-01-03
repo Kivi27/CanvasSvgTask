@@ -110,12 +110,14 @@ function drawBirdHead(ctx, begX, begY, widthBeak, angleBeak, radiusHead, radiusE
 }
 
 function drawBirdTail(ctx, centerBodyX, radiusBodyX, centerBodyY, radiusBodyY) {
+    const extremePointX = centerBodyX + radiusBodyX;
+    const extremePointY = centerBodyY + radiusBodyY;
     const points = [
-        {coordinateX: centerBodyX + radiusBodyX - 26, coordinateY: centerBodyY + radiusBodyY - 20},
-        {coordinateX: centerBodyX + radiusBodyX + 80, coordinateY: centerBodyY + radiusBodyY - 60},
-        {coordinateX: centerBodyX + radiusBodyX + 10, coordinateY: centerBodyY + radiusBodyY},
-        {coordinateX: centerBodyX + radiusBodyX + 35, coordinateY: centerBodyY + radiusBodyY + 50},
-        {coordinateX: centerBodyX + radiusBodyX - 40, coordinateY: centerBodyY + radiusBodyY + 10},
+        {coordinateX: extremePointX - 26, coordinateY: extremePointY - 20},
+        {coordinateX: extremePointX + 80, coordinateY: extremePointY - 60},
+        {coordinateX: extremePointX + 10, coordinateY: extremePointY},
+        {coordinateX: extremePointX + 35, coordinateY: extremePointY + 50},
+        {coordinateX: extremePointX - 40, coordinateY: extremePointY + 10},
     ]
     
     drawPolyLine(ctx, points);
