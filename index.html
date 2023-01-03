@@ -16,10 +16,43 @@
                     Not support canvas
                 </canvas>
             </section>
-            <section class="svg-picture">
+            <hr>
+            <section>
+                <svg class="svg-picture">
+                    <svg x="0" y="0" id="sun">
+                        <circle cx="0" cy="0" r="80" fill="#FAFA02" />
+                    </svg>
+                    <svg x="250" y="0" id="cloud">
+                        <g fill="#42F5EC">
+                            <circle cx="100" cy="100"  r="50" />
+                            <circle cx="50" cy="130" r="40" />
+                            <circle cx="150" cy="130" r="40" />
+                            <rect x="35" y="108" width="120" height="60" />
+                        </g>
+                    </svg>
+                    <use href="#cloud" x="220" y="-50" />
+                    <use href="#cloud" x="450" y="0" />
+                    <use href="#cloud" x="680" y="-50" />
+                    <use href="#cloud" x="900" y="0" />
+                    <use href="#cloud" x="1130" y="-50" />
+                    <svg x="370" y="250" id="tree">
+                        <g fill="#42f548">
+                            <line x1="200" y1="0" x2="200" y2="180" stroke="black" />
+                            <circle cx="200" cy="80"  r="35" />
+                            <circle cx="235" cy="60"  r="35" />
+                            <circle cx="190" cy="30"  r="30" />
+                            <circle cx="200" cy="110"  r="35" />
+                            <circle cx="160" cy="80"  r="35" />
+                        </g>
+                    </svg>
+                    <use href="#tree" x="220" y="120" />
+                    <use href="#tree" x="450" y="0" />
+                    <use href="#tree" x="680" y="120" />
+                    <use href="#tree" x="900" y="0" />
+                </svg>
             </section>
         </main>
     </div>
-    <script src="js/main.js"></script>
+    <script src="js/canvas_init.js"></script>
 </body>
 </html>

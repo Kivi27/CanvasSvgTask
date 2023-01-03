@@ -1,7 +1,7 @@
 "use strict";
 
-let canvas  = document.querySelector(".canvas-picture__canvas");
-canvas.width = window.screen.width;
+const canvas  = document.querySelector(".canvas-picture__canvas");
+canvas.width = window.innerWidth;
 canvas.height = 700;
 
 const yellowColor = "#FAFA02";
@@ -47,7 +47,7 @@ function drawCloud(ctx, begX, begY) {
     const smallCircleRadius = 40;
     const offsetCircleSmall = 30;
     const beginXRectangle = begX - 65;
-    const  beginYRectangle = begY + 8;
+    const beginYRectangle = begY + 8;
     const heightRectangle = 60;
 
     ctx.fillStyle = colorCloud;
@@ -158,3 +158,8 @@ function drawPolyLine(ctx, points) {
         previousPoint = points[i];
     }
 }
+
+const svgPicture = document.querySelector(".svg-picture");
+svgPicture.style.width = window.innerWidth + "px";
+svgPicture.style.height = 700 + "px";
+
