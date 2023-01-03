@@ -88,7 +88,7 @@ function drawBird(ctx, begX, begY) {
     const radiusEye = 12;
     const widthBeak = 120;
     const angleBeak = 20;
-    const centerBodyX = begX + radiusHead + 50;
+    const centerBodyX = begX + radiusHead * 2;
     const centerBodyY = begY + radiusHead * 2;
     const radiusBodyX = 100;
     const radiusBodyY = 70;
@@ -158,8 +158,3 @@ function drawPolyLine(ctx, points) {
         previousPoint = points[i];
     }
 }
-
-const svgPicture = document.querySelector(".svg-picture");
-svgPicture.style.width = window.innerWidth + "px";
-svgPicture.style.height = 700 + "px";
-
